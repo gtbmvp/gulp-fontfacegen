@@ -1,0 +1,74 @@
+﻿# gulp-fontfacegen
+
+**gulp-fontfacegen** generates CSS file with @font-face rules for modern browsers (**woff, woff2** formats) based on keywords in font filename.
+\*notice: it doesn't convert font in different formats, use fonter/ttf2woff2/etc to do it;
+
+---
+
+### Example
+
+- Input font name: `BriosoPro-Italic-Semibold`
+- Output file contents:
+
+```
+@font-face {
+	font-family: 'BriosoPro';
+	font-style: italic;
+	font-weight: 600;
+	font-display: swap;
+	src: local(''),
+	url("../font/BriosoPro Italic.woff2") format("woff2"),
+	url("../font/BriosoPro Italic.woff") format("woff");
+}
+```
+
+### Installation
+
+`npm install --save-dev gulp-fontfacegen`
+
+### Usage
+
+```
+const { src, dest } = require('gulp');
+const fontfacegen = require('gulp-fontfacegen');
+
+function font() {
+  return src("./src/font/*.{eot,ttf,otf,otc,ttc,woff,woff2,svg}")
+        // Transform your fonts: fonter/ttf2woff2/etc
+        .pipe(dest("./public/font"))
+        .pipe(
+            fontfacegen()
+                // or
+            fontfacegen({
+                filepath: "./public/css",
+                filename: "fontfacerules.css",
+             })
+        )
+}
+
+exports.font = font;
+```
+
+### Options argument
+
+_Object_ with next properties:
+
+- **filepath**: destination folder where @font-face CSS rules should be created, default value: `./css`;
+- **filename**: name of file with @font-face CSS rules, default value: `fonts.css`
+
+---
+
+### Features
+
+- checks if CSS file already exists;
+- creates folder for CSS file;
+- prevents @font-face rules duplicates while processing fonts with same name (it could happen with same name fonts but different extensions);
+- as fontname it takes string before "-" or whole filename;
+- possible font-style values: _italic, oblique, normal_;
+- possible font-weight values: _100, 200, 300, 400, 500, 600, 700, 800, 900, 950_;
+
+---
+
+### Plan2do
+
+- implement another way to distinguish fontname;

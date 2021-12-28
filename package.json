@@ -1,0 +1,25 @@
+{
+  "name": "gulp-fontfacegen",
+  "version": "1.0.0",
+  "description": "Generate CSS file with @font-face rules for modern browsers based on keywords in font filename",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jetzeny/gulp-fontfacegen.git"
+  },
+  "keywords": [
+    "gulp",
+    "fontface",
+    "font",
+    "generator"
+  ],
+  "author": "grindingeorge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jetzeny/gulp-fontfacegen/issues"
+  },
+  "homepage": "https://github.com/jetzeny/gulp-fontfacegen#readme"
+}
