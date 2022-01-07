@@ -53,7 +53,7 @@ exports.font = font;
 
 _Object_ with next properties:
 
-- **filepath**: destination folder where @font-face CSS rules should be created, default value: `./css`;
+- **filepath**: destination folder where @font-face CSS rules should be created, default value: `./src/css`;
 - **filename**: name of file with @font-face CSS rules, default value: `fonts.css`
 
 ---
