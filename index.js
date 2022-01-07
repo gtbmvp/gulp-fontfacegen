@@ -3,7 +3,7 @@ const { Transform } = require("stream");
 const fs = require("fs");
 
 module.exports = (options = {}) => {
-  let { filepath = "./css", filename = "fonts.css" } = options;
+  let { filepath = "./src/css", filename = "fonts.css" } = options;
   let fontFaceFile = `${filepath}/${filename}`;
 
   // check CSS file existance
