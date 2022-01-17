@@ -1,6 +1,6 @@
 {
   "name": "gulp-fontfacegen",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Generate CSS file with @font-face rules for modern browsers based on keywords in font filename",
   "main": "index.js",
   "scripts": {

@@ -63,12 +63,6 @@ _Object_ with next properties:
 - checks if CSS file already exists;
 - creates folder for CSS file;
 - prevents @font-face rules duplicates while processing fonts with same name (it could happen with same name fonts but different extensions);
-- as fontname it takes string before "-" or whole filename;
+- font-family is generating by excluding font-style, font-weight and language charset keywords from filename;
 - possible font-style values: _italic, oblique, normal_;
 - possible font-weight values: _100, 200, 300, 400, 500, 600, 700, 800, 900, 950_;
-
----
-
-### Plan2do
-
-- implement another way to distinguish fontname;

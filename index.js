@@ -13,7 +13,6 @@ module.exports = (options = {}) => {
     );
     return;
   }
-
   // create folder for future "fonts.css"
   if (!fs.existsSync(filepath)) {
     fs.mkdirSync(filepath, { recursive: true });
@@ -22,18 +21,62 @@ module.exports = (options = {}) => {
   // create new set to prevent duplicate @font-face rules
   let uniqueFonts = new Set();
 
+  //keywords for distinguishing font name
+  const keywords = [
+    "italic",
+    "oblique",
+    "normal",
+    "vietnamese",
+    "latin",
+    "greek",
+    "cyrillic",
+    "ext",
+    "thin",
+    "hairline",
+    "extralight",
+    "ultralight",
+    "light",
+    "regular",
+    "medium",
+    "semibold",
+    "demibold",
+    "bold",
+    "extrabold",
+    "ultrabold",
+    "black",
+    "heavy",
+    "extrablack",
+    "ultrablack",
+    "100",
+    "200",
+    "300",
+    "400",
+    "500",
+    "600",
+    "700",
+    "800",
+    "900",
+    "950",
+  ];
+
   const transformStream = new Transform({
     objectMode: true,
 
     transform(file, enc, callback) {
-      let fileName = file.stem;
+      let fileName = file.stem.toLowerCase();
 
       // check if font with such name had already been processed
       if (uniqueFonts.has(fileName)) {
         console.log(`${fileName} has already been processed`);
         callback(null, file);
       } else {
-        let fontName = fileName.split("-")[0];
+        let array = fileName.split(/-|_|\s/); // splitting fileName by - or _ or \s separators;
+
+        //filter array to exclude keywords
+        let filteredArray = array.filter(
+          (fileNamePiece) => !keywords.includes(fileNamePiece.toLowerCase())
+        );
+        let fontFamily = filteredArray.join("-"); // get font name with "-" between words;
 
         let fontStyle;
         if (fileName.toLowerCase().includes("italic")) {
@@ -100,10 +143,10 @@ module.exports = (options = {}) => {
           fontWeight = 400;
         }
 
-        // create @font-face fonts.css with generated fontName, fontStyle, fontWeight, fileName
+        // create @font-face fonts.css with generated fontFamily, fontStyle, fontWeight, fileName
         fs.appendFile(
           fontFaceFile,
-          `@font-face {\n\tfont-family: '${fontName}';\n\tfont-style: ${fontStyle};\n\tfont-weight: ${fontWeight};\n\tfont-display: swap;\n\tsrc: local(''),\n\turl("../font/${fileName}.woff2") format("woff2"),\n\turl("../font/${fileName}.woff") format("woff");\n}\n`,
+          `@font-face {\n\tfont-family: '${fontFamily}';\n\tfont-style: ${fontStyle};\n\tfont-weight: ${fontWeight};\n\tfont-display: swap;\n\tsrc: local(''),\n\turl("../font/${fileName}.woff2") format("woff2"),\n\turl("../font/${fileName}.woff") format("woff");\n}\n`,
           (err) => {
             if (err) {
               console.log(`Error while creating ${fontFaceFile}`);
