@@ -17,8 +17,8 @@
 	font-weight: 600;
 	font-display: swap;
 	src: local(''),
-	url("../font/BriosoPro Italic.woff2") format("woff2"),
-	url("../font/BriosoPro Italic.woff") format("woff");
+	url("../font/Brioso_Pro-Italic Semibold.woff2") format("woff2"),
+	url("../font/Brioso_Pro-Italic Semibold.woff") format("woff");
 }
 ```
 
