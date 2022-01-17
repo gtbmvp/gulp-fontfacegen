@@ -63,7 +63,7 @@ module.exports = (options = {}) => {
     objectMode: true,
 
     transform(file, enc, callback) {
-      let fileName = file.stem.toLowerCase();
+      let fileName = file.stem;
 
       // check if font with such name had already been processed
       if (uniqueFonts.has(fileName)) {

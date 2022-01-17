@@ -7,12 +7,12 @@
 
 ### Example
 
-- Input font name: `BriosoPro-Italic-Semibold`
+- Input font name: `Brioso_Pro-Italic Semibold`
 - Output file contents:
 
 ```
 @font-face {
-	font-family: 'BriosoPro';
+	font-family: 'Brioso-Pro';
 	font-style: italic;
 	font-weight: 600;
 	font-display: swap;
