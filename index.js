@@ -26,6 +26,7 @@ module.exports = (options = {}) => {
     "italic",
     "oblique",
     "normal",
+    "japanese",
     "vietnamese",
     "latin",
     "greek",
@@ -72,9 +73,13 @@ module.exports = (options = {}) => {
       } else {
         let array = fileName.split(/-|_|\s/); // splitting fileName by - or _ or \s separators;
 
-        //filter array to exclude keywords
+        //filter array to exclude keywords and versions (v7, v26, etc)
         let filteredArray = array.filter(
-          (fileNamePiece) => !keywords.includes(fileNamePiece.toLowerCase())
+          (fileNamePiece) =>
+            !(
+              keywords.includes(fileNamePiece.toLowerCase()) ||
+              /v\d\d*/.test(fileNamePiece.toLowerCase())
+            )
         );
         let fontFamily = filteredArray.join("-"); // get font name with "-" between words;
 
