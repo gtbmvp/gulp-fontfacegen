@@ -73,15 +73,22 @@ module.exports = (options = {}) => {
       } else {
         let array = fileName.split(/-|_|\s/); // splitting fileName by - or _ or \s separators;
 
-        //filter array to exclude keywords and versions (v7, v26, etc)
-        let filteredArray = array.filter(
-          (fileNamePiece) =>
-            !(
-              keywords.includes(fileNamePiece.toLowerCase()) ||
-              /v\d\d*/.test(fileNamePiece.toLowerCase())
-            )
-        );
-        let fontFamily = filteredArray.join("-"); // get font name with "-" between words;
+        //filter array to exclude keywords and versions (v7, v26, etc) and capitalize first letter of font-family;
+        let filteredArray = array
+          .filter(
+            (fileNamePiece) =>
+              !(
+                keywords.includes(fileNamePiece.toLowerCase()) ||
+                /v\d\d*/.test(fileNamePiece.toLowerCase())
+              )
+          )
+          .map(
+            (fileNamePiece) =>
+              fileNamePiece.charAt(0).toUpperCase() +
+              fileNamePiece.toLowerCase().slice(1)
+          );
+
+        let fontFamily = filteredArray.join(" "); // get font-family with " " between words;
 
         let fontStyle;
         if (fileName.toLowerCase().includes("italic")) {

@@ -7,18 +7,18 @@
 
 ### Example
 
-- Input font name: `Brioso_Pro_v26-Italic Semibold`
+- Input font name: `brioso_pro_v26-Italic Semibold`
 - Output file contents:
 
 ```
 @font-face {
-	font-family: 'Brioso-Pro';
+	font-family: 'Brioso Pro';
 	font-style: italic;
 	font-weight: 600;
 	font-display: swap;
 	src: local(''),
-	url("../font/Brioso_Pro_v26-Italic Semibold.woff2") format("woff2"),
-	url("../font/Brioso_Pro_v26-Italic Semibold.woff") format("woff");
+	url("../font/brioso_pro_v26-Italic Semibold.woff2") format("woff2"),
+	url("../font/brioso_pro_v26-Italic Semibold.woff") format("woff");
 }
 ```
 
