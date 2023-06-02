@@ -6,15 +6,11 @@ module.exports = (options = {}) => {
   let { filepath = "./src/css/partial", filename = "fonts.css" } = options;
   let fontFaceFile = `${filepath}/${filename}`;
 
-  // check CSS file existance
+  // check CSS file existance, create folder for future "fonts.css"
   if (fs.existsSync(fontFaceFile)) {
-    console.log(
-      `File ${fontFaceFile} already exists. Delete it before updating!`
-    );
-    return;
-  }
-  // create folder for future "fonts.css"
-  if (!fs.existsSync(filepath)) {
+    fs.unlinkSync(fontFaceFile);
+    fs.mkdirSync(filepath, { recursive: true });
+  } else {
     fs.mkdirSync(filepath, { recursive: true });
   }
 
