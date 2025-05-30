@@ -3,7 +3,7 @@ const { Transform } = require("stream");
 const fs = require("fs");
 
 module.exports = (options = {}) => {
-  let { filepath = "./src/css/partial", filename = "fonts.css" } = options;
+  let { filepath = "./src/css/partial", filename = "fonts.css", csspath = "../fonts" } = options;
   let fontFaceFile = `${filepath}/${filename}`;
 
   // check CSS file existance
@@ -158,7 +158,7 @@ module.exports = (options = {}) => {
         // create @font-face fonts.css with generated fontFamily, fontStyle, fontWeight, fileName
         fs.appendFile(
           fontFaceFile,
-          `@font-face {\n\tfont-family: '${fontFamily}';\n\tfont-style: ${fontStyle};\n\tfont-weight: ${fontWeight};\n\tfont-display: swap;\n\tsrc: local(''),\n\turl("../font/${fileName}.woff2") format("woff2"),\n\turl("../font/${fileName}.woff") format("woff");\n}\n`,
+          `@font-face {\n\tfont-family: '${fontFamily}';\n\tfont-style: ${fontStyle};\n\tfont-weight: ${fontWeight};\n\tfont-display: swap;\n\tsrc: local(''),\n\turl("${csspath}/${fileName}.woff2") format("woff2"),\n\turl("${csspath}/${fileName}.woff") format("woff");\n}\n`,
           (err) => {
             if (err) {
               console.log(`Error while creating ${fontFaceFile}`);
